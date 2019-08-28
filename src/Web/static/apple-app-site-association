@@ -1,0 +1,20 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "5QA9U9924L.org.codemooc.codymaze.mirabilandia",
+                "paths": [
+                    "/mirabilandia/position/*",
+                    "/position/*"
+                ]
+            },
+            {
+                "appID": "5QA9U9924L.org.codemooc.codymaze",
+                "paths": [
+                    "/position/*"
+                ]
+            }
+        ]
+    }
+}

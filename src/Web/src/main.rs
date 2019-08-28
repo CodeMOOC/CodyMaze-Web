@@ -1,5 +1,5 @@
-#[macro_use]
-extern crate actix_web;
+//#[macro_use]
+//extern crate actix_web;
 
 #[macro_use]
 extern crate serde_json;
@@ -7,19 +7,15 @@ extern crate serde_json;
 use actix_files as fs;
 use actix_web::{web, App, HttpResponse, HttpServer};
 use handlebars::Handlebars;
+//use std::collections::BTreeMap;
 
-#[get("/")]
-fn index(hb: web::Data<Handlebars>) -> HttpResponse {
+fn landing_mirabilandia(hb: web::Data<Handlebars>, info: web::Path<(String)>) -> HttpResponse {
     let data = json!({
-        "name": "Handlebars"
+        "code": info.to_string()
     });
-    let body = hb.render("index", &data).unwrap();
+    let body = hb.render("position", &data).unwrap();
 
     HttpResponse::Ok().body(body)
-}
-
-fn landing_mirabilandia(info: web::Path<String>) -> HttpResponse {
-    HttpResponse::Ok().body(format!("Path is {}!", info))
 }
 
 fn main() {
@@ -34,8 +30,9 @@ fn main() {
     HttpServer::new(move || {
         App::new()
             .register_data(handlebars_ref.clone())
-            .service(index)
-            .route("/mirabilandia/position/{pos}", web::get().to(landing_mirabilandia))
+            .service(
+                web::resource("/mirabilandia/position/{code}").route(web::get().to(landing_mirabilandia))
+            )
             .service(fs::Files::new("/", "./static"))
     })
     .bind("localhost:8088")

@@ -29,7 +29,8 @@ FROM debian:jessie-slim AS runtime
 #    rm -rf /var/cache/apk/*
 
 WORKDIR /app
-COPY --from=build /usr/src/codymaze-web/build/release/codymaze-web /app/codymaze-web
+COPY --from=build /usr/src/codymaze-web/build/release/codymaze-web codymaze-web
+COPY ./static/ static/
 
 EXPOSE 8088
 

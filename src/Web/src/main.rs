@@ -29,7 +29,7 @@ fn main() {
             .service(
                 web::resource("/mirabilandia/position/{code}").route(web::get().to(landing_mirabilandia))
             )
-            .service(fs::Files::new("/", "./static"))
+            .service(fs::Files::new("/", "./static").index_file("index.html"))
     })
     .bind("localhost:8088")
     .unwrap()

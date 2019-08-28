@@ -1,13 +1,9 @@
-//#[macro_use]
-//extern crate actix_web;
-
 #[macro_use]
 extern crate serde_json;
 
 use actix_files as fs;
 use actix_web::{web, App, HttpResponse, HttpServer};
 use handlebars::Handlebars;
-//use std::collections::BTreeMap;
 
 fn landing_mirabilandia(hb: web::Data<Handlebars>, info: web::Path<(String)>) -> HttpResponse {
     let data = json!({

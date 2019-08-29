@@ -1,17 +1,29 @@
 #[macro_use]
 extern crate serde_json;
+#[macro_use]
+extern crate lazy_static;
 
 use actix_files as fs;
 use actix_web::{web, App, HttpResponse, HttpServer};
 use handlebars::Handlebars;
+use regex::Regex;
 
 fn landing_mirabilandia(hb: web::Data<Handlebars>, info: web::Path<(String)>) -> HttpResponse {
-    let data = json!({
-        "code": info.to_string()
-    });
-    let body = hb.render("position", &data).unwrap();
+    lazy_static! {
+        static ref MATCHER: Regex = Regex::new(r"(?i)[abcde][1-5][nesw]?").unwrap();
+    }
 
-    HttpResponse::Ok().body(body)
+    if !MATCHER.is_match(&info) {
+        HttpResponse::NotFound().body("Invalid position!")
+    }
+    else {
+        let data = json!({
+            "code": info.to_string().to_uppercase()
+        });
+        let body = hb.render("position", &data).unwrap();
+
+        HttpResponse::Ok().body(body)
+    }
 }
 
 fn main() {

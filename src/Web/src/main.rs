@@ -31,7 +31,7 @@ fn main() {
             )
             .service(fs::Files::new("/", "./static").index_file("index.html"))
     })
-    .bind("localhost:8088")
+    .bind("0.0.0.0:8088")
     .unwrap()
     .run()
     .unwrap();

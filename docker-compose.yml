@@ -9,7 +9,5 @@ services:
     build: ./src/Web
     networks:
     - web
-    volumes:
-    - .cargo/registry:/root/.cargo/registry:rw
     expose:
     - "8088"

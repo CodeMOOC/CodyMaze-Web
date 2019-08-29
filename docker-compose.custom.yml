@@ -11,3 +11,4 @@ services:
     - "traefik.frontend.rule=Host:codymaze.codemooc.org"
     - "traefik.frontend.entryPoints=http,https"
     - "traefik.frontend.redirect.entryPoint=https"
+    restart: unless-stopped

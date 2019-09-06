@@ -8,6 +8,18 @@ use actix_web::{web, App, HttpResponse, HttpServer};
 use handlebars::Handlebars;
 use regex::Regex;
 
+fn root() -> HttpResponse {
+    HttpResponse::Found()
+        .header("Location", "/mirabilandia")
+        .finish()
+}
+
+fn apk_download() -> HttpResponse {
+    HttpResponse::MovedPermanently()
+        .header("Location", "https://drive.google.com/uc?export=download&id=16AyQyU1MYHtKJSIaLzNuh1gzLuE77mk0")
+        .finish()
+}
+
 fn landing_mirabilandia(hb: web::Data<Handlebars>, info: web::Path<(String)>) -> HttpResponse {
     lazy_static! {
         static ref MATCHER: Regex = Regex::new(r"(?i)[abcde][1-5][nesw]?").unwrap();
@@ -31,13 +43,15 @@ fn main() {
 
     let mut handlebars = Handlebars::new();
     handlebars
-        .register_templates_directory(".html", "./static/templates")
+        .register_templates_directory(".html", "./templates")
         .unwrap();
     let handlebars_ref = web::Data::new(handlebars);
 
     HttpServer::new(move || {
         App::new()
             .register_data(handlebars_ref.clone())
+            .service(web::resource("/").route(web::get().to(root)))
+            .service(web::resource("/mirabilandia/apk").route(web::get().to(apk_download)))
             .service(
                 web::resource("/mirabilandia/position/{code}").route(web::get().to(landing_mirabilandia))
             )

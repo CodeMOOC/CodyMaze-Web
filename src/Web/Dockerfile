@@ -20,6 +20,7 @@ FROM debian:jessie-slim AS runtime
 WORKDIR /app
 COPY --from=build /usr/src/codymaze-web/build/release/codymaze-web codymaze-web
 COPY ./static/ static/
+COPY ./templates templates/
 
 EXPOSE 8088
 

@@ -14,7 +14,6 @@ RUN dotnet publish -c Release -o out
 # Second stage (execution)
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 
-ENV Logging__Console__FormatterName=
 ENV ASPNETCORE_URLS http://+:8080
 EXPOSE 8080
 

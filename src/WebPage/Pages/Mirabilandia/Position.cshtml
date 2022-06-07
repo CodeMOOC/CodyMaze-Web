@@ -1,0 +1,90 @@
+﻿@page "{code:regex((?i)^[abcde][1-5][nesw]?$)}"
+@model PositionModel
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex" />
+
+    <title>CodyMaze Mirabilandia | Posizione @Model.Code</title>
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,400i,600" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="~/skeleton-2.0.4/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/skeleton-2.0.4/skeleton.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/style.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns centered">
+                    <img src="~/codymaze-mira-logo.jpg" alt="CodyMaze Mirabilandia" class="u-full-width logo" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="centered">CodyMaze<br />Posizione&nbsp;@Model.Code</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <p class="centered">
+                        <a class="button button-primary" href="codymaze://mirabilandia/position/@Model.Code" title="Continua a giocare con l’app CodyMaze">
+                            Continua a giocare
+                        </a>
+                    </p>
+        
+                    <p>
+                        Usa il pulsante qui sopra per scegliere la posizione della scacchiera&nbsp;<b>@Model.Code</b> e proseguire con il gioco.
+                    </p>
+        
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Installa l’applicazione</h3>
+                    <p>
+                        Se non hai ancora installato l’applicazione <b>CodyMaze Mirabilandia</b>, clicca sulle icone qui sotto per scaricarla gratuitamente dagli store.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="six columns badge">
+                    <a href="https://play.google.com/store/apps/details?id=org.codemooc.codymaze.mirabilandia" title="Installa CodyMaze Mirabilandia da Google Play">
+                        <img src="~/badge_google_play.png" alt="Installa da Google Play" class="u-full-width" />
+                    </a>
+                </div>
+                <div class="six columns badge">
+                    <a href="https://apps.apple.com/it/app/codymaze-mirabilandia/id1478122963" title="Installa CodyMaze Mirabilandia da App Store">
+                        <img src="~/badge_app_store.png" alt="Installa da App Store" class="u-full-width" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <p>CodyMaze per Mirabilandia&nbsp;&mdash;&nbsp;@DateTime.UtcNow.ToString("yyyy")</p>
+                    <p><a asp-page="/Privacy">Privacy policy</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

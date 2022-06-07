@@ -1,2 +1,4 @@
-.vscode/*
-src/Web/target/*
+**/.vscode/*
+**/.vs/*
+**/obj/*
+**/bin/*
